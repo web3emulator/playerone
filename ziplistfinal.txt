@@ -1,0 +1,6 @@
+sonic.zip - Sonic the Hedgehog - Platformer
+sonic2.zip - Sonic the Hedgehog 2 - Platformer
+s3comp.zip - Sonic the Hedgehog 3 - Platformer
+sspin.zip - Sonic the Hedgehog: Spinball - Platformer
+drrobotn.zip - Dr. Robotnik's Mean Bean Machine - Puzzle/Strategy
+flicky.zip - Flicky - Puzzle/Strategy

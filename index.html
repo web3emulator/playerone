@@ -1,0 +1,1674 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PLAYER ONE</title>
+  <style>
+    body {
+      background-image: url("greenhill.png");
+      background-color: black;
+      background-size: cover; /* Scale the image to cover the entire body */
+      background-position: center; /* Center the image on the body */
+      background-repeat: no-repeat; /* Prevent the image from repeating */
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      height: 220vh; /* Set the height to 3x the viewport height */
+      overflow-y: scroll; /* Enable vertical scrolling */
+    }
+
+    
+
+    .button-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 50vw;
+      height: 50vh;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .game-button {
+      width: 45vw;
+      margin: 10px 0;
+      padding: 20px 0;
+      background: linear-gradient(to bottom, #d35e78, #412150);
+      color: rgb(255, 255, 255);
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: bolder;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .game-button:hover {
+        background: linear-gradient(to bottom, #31c4a1, #08caad);
+    }
+    .menu-button:hover {
+        background: linear-gradient(to bottom, #31c4a1, #08caad);
+    }
+    .back-button:hover {
+        background: linear-gradient(to bottom, #31c4a1, #08caad);
+    }
+
+    .menu-button-connect {
+      position: absolute;
+      top: 40%;
+      left: 5%;
+      width: 90%;
+      height: 12vh;
+      margin: 0px 0;
+      padding: 0px 0;
+      background: linear-gradient(to bottom, #1e7b66, #0d9a84);
+      color: rgb(255, 255, 255);
+      border: 3px solid black; /* Added border */
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 3.5rem;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: transform 0.3s ease; /* Smooth transform over 0.3 seconds */
+    }
+
+    .menu-button-connect:hover {
+      transform: scale(1.05); /* Increase size to 115% when hovered */
+    }
+
+    .menu-button {
+      position: fixed;
+      top: 40%;
+      left: 5%;
+      width: 90%;
+      height: 8vh;
+      margin: 0px 0;
+      padding: 0px 0;
+      background: linear-gradient(to bottom, #1e7b66, #0d9a84);
+      color: rgb(255, 255, 255);
+      border: 3px solid black; /* Added border */
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 3.5rem;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: transform 0.3s ease; /* Smooth transform over 0.3 seconds */
+    }
+
+    .menu-button:hover {
+      transform: scale(1.05); /* Increase size to 115% when hovered */
+    }
+
+
+
+
+    .genre-buttons-container {
+        
+      display: none;
+      position: fixed;
+      top: 8.5%;
+      left: 20%;
+      justify-content: space-around;
+      align-items: center;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+    }
+
+    .genre-button {
+      background-color: "rgb(255, 255, 255, 0.744)";
+      border: none;
+      color: black;
+      background-color: #f1f1f1c0;
+
+      text-align: center;
+      text-decoration: none;
+      font-size: 2.5vw;
+      padding: 10px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: none;
+    }
+
+
+
+    .genre-button:hover {
+    background-color: #08caad !important; /* Add !important to override other rules */
+    }
+    .random-button:hover {
+        background-color: #08caad !important; /* Add !important to override other rules */
+    }
+
+    .arrowButton:hover {
+        background-color: #08caad !important; /* Add !important to override other rules */
+    }
+    .star-button:hover {
+        background-color: #08caad !important; /* Add !important to override other rules */
+    }
+    .reset-button:hover {
+        background-color: #08caad !important; /* Add !important to override other rules */
+    }
+    .plus-button:hover {
+        background-color: #08caad !important; /* Add !important to override other rules */
+    }
+
+    .favorite-added {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background-color: #000;
+      color: #1eeef5;
+      padding: 16px;
+      border-radius: 4px;
+      box-shadow: 0px 0px 20px #1e7b66;
+      font-weight: bold;
+      text-align: center;
+      font-size: 3rem;
+    }
+
+    .confirmation-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background-color: #000;
+      color: #08caad;
+      padding: 16px;
+      border-radius: 4px;
+      box-shadow: 0px 0px 20px #1e7b66;
+      font-weight: bold;
+      text-align: center;
+      font-size: 24px;
+    }
+
+
+
+
+    .random-button {
+      position: fixed;
+      display: none;
+      top: 79%;
+      left: 85%;
+      background-color: #f1f1f1c0;
+      border: block;
+      color: black;
+      font-size: 3rem;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .star-button {
+      position: fixed;
+      display: none;
+      top: 63%;
+      left: 85%;
+      background-color: #f1f1f1c0;
+      border: block;
+      color: black;
+      font-size: 3rem;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+
+    .plus-button {
+      position: fixed;
+      display: none;
+      top: 63%;
+      left: 85%;
+      background-color: #f1f1f1c0;
+      border: block;
+      color: black;
+      color: green; 
+      font-size: 5rem; 
+      font-weight: bolder;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .reset-button {
+      position: fixed;
+      display: none;
+      top: 63%;
+      left: 91.5%;
+      background-color: #f1f1f1c0;
+      border: block;
+      color: black;
+      font-size: 1rem;
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+
+
+    .systems-button {
+      position: fixed;
+      display: none;
+      top: 79%;
+      left: 7.5%;
+      background-color: #f1f1f1c0;
+      border: block;
+      color: black;
+      font-size: 3rem;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .systems {
+      position: fixed;
+      display: flex;
+      top: 71%;
+      left: 4.5%;
+      background: linear-gradient(to bottom, #1e7b66, #0d9a84   );
+
+      color: white;
+      font-size: 1.5rem;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      min-width:160px;
+      width: 160px;
+      text-align: center;
+      text-decoration: none;
+      justify-content: center;
+    }
+
+    .systems:hover {
+        background: #08caad !important; /* Add !important to override other rules */
+    }
+
+    .systems-button:hover {
+        background: #08caad !important; /* Add !important to override other rules */
+    }
+    
+
+    .genre-button:hover {
+      background-color: #ddddddcc;
+    }
+
+
+    #backButton {
+      position: fixed;
+      top: 93%;
+      z-index: 1000000;
+    }
+
+    .coin-image {
+      position: absolute;
+      display: none;
+      top: 7%;
+      left: 54%;
+      transform: translate(-50%, -50%);
+      transform: scale(.3, .3);
+
+      z-index: 9999; /* Set a large z-index */
+    }
+
+    .coin-count {
+      position: absolute;
+      display: none;
+      top: 20%;
+      left: 66%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-weight: bolder;
+      z-index: 9999; /* Set a large z-index */
+    }
+
+
+   #downButton{
+      position: fixed;
+      left:75%;
+      top: 40%;
+        background-color: rgba(255, 255, 255, 0.744);
+      font-size: 4rem;
+      font-weight: 900; /* Make the arrows bolder */
+      transition: background-color 0.3s;
+      font-family: Impact, Charcoal, sans-serif;   
+      
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #upButton {
+      position: fixed;
+      left: 22%;
+      top: 40%;
+      background-color: rgba(255, 255, 255, 0.744);
+
+      font-size: 4rem;
+      font-weight: 900; /* Make the arrows bolder */
+      transition: background-color 0.3s;
+      font-family: Impact, Charcoal, sans-serif;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #searchInput {
+        position: fixed;
+        display: none;
+        width: 65vw;
+        height: 6vh;
+        top: 83%;
+        left: 17%;
+        font-size: 2rem;
+        text-align: center;
+        font-weight: bolder;
+        background-color: rgba(255, 255, 255, 0.945);
+    }
+
+
+    #gameScreen {
+      display: fixed;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      z-index: 10000000000;
+      margin: auto;
+    }
+
+    #gameScreenContainer {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 84%;
+      display: none; /* Hide the element initially */
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gray-box {
+      position: fixed;
+      display: none;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 70%;
+      height: 95%;
+      margin: 0 15%;
+      background-color: rgb(17, 17, 17);
+      opacity: 0.95; /* Added opacity */
+    }
+
+    .EJS_status {
+      height: 10px; /* Adjust this value to your preferred height */
+    }
+
+    #twitter-icon {
+      position: absolute;
+      top: 135%;
+      left: 85%;
+      transform: translate(-50%, -50%);
+      transform: scale(.6, .6);
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #twitter-icon img {
+      width: 100px; /* adjust size as needed */
+      height: 100px; /* adjust size as needed */
+    }
+
+    #etherscan-icon {
+      position: absolute;
+      top: 125%;
+      left: 85%;
+      transform: translate(-50%, -50%);
+      transform: scale(.6, .6);
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #etherscan-icon img {
+      width: 100px; /* adjust size as needed */
+      height: 100px; /* adjust size as needed */
+    }
+    #chart-icon {
+      position: absolute;
+      top: 145%;
+      left: 85%;
+      transform: translate(-50%, -50%);
+      transform: scale(.6, .6);
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #chart-icon img {
+      width: 100px; /* adjust size as needed */
+      height: 100px; /* adjust size as needed */
+    }
+   
+   
+  /* @media (min-width: 600px) {
+  #gameScreenContainer {
+    top: calc(13.5% + ((27.5% - 13.5%) / 10 * 0));
+    left: calc(7.5% + ((28.5% - 7.5%) / 10 * 0));
+    transform: scale(calc(.8 + ((1.5 - .8) / 10 * 0)), calc(1 + ((1.3 - 1) / 10 * 0)));
+    }
+  }
+  @media (min-width: 700px) {
+  #gameScreenContainer {
+    top: 13.5%;
+    left: 7.5%;
+    transform: scale(.8,1);
+  }
+}
+
+@media (min-width: 800px) {
+  #gameScreenContainer {
+    top: calc(13.5% + ((27.5% - 13.5%) / 10 * 1));
+    left: calc(7.5% + ((28.5% - 7.5%) / 10 * 1));
+    transform: scale(calc(.8 + ((1.5 - .8) / 10 * 1)), calc(1 + ((1.3 - 1) / 10 * 1)));
+  }
+}
+
+@media (min-width: 900px) {
+  #gameScreenContainer {
+    top: calc(13.5% + ((27.5% - 13.5%) / 10 * 2));
+    left: calc(7.5% + ((28.5% - 7.5%) / 10 * 2));
+    transform: scale(calc(.8 + ((1.5 - .8) / 10 * 2)), calc(1 + ((1.3 - 1) / 10 * 2)));
+  }
+}
+
+@media (min-width: 1000px) {
+  #gameScreenContainer {
+    top: calc(13.5% + ((27.5% - 13.5%) / 10 * 4));
+    left: calc(7.5% + ((28.5% - 7.5%) / 10 * 4));
+    transform: scale(calc(.8 + ((1.5 - .8) / 10 * 4)), calc(1 + ((1.3 - 1) / 10 * 4)));
+  }
+}
+
+@media (min-width: 1100px) {
+  #gameScreenContainer {
+    top: calc(13.5% + ((27.5% - 13.5%) / 10 * 5));
+    left: calc(7.5% + ((28.5% - 7.5%) / 10 * 5));
+    transform: scale(calc(.8 + ((1.5 - .8) / 10 * 5)), calc(1 + ((1.3 - 1) / 10 * 5)));
+  }
+}
+
+@media (min-width: 1200px) {
+  #gameScreenContainer {
+    top: calc(13.5% + ((27.5% - 13.5%) / 10 * 6));
+    left: calc(7.5% + ((28.5% - 7.5%) / 10 * 6));
+    transform: scale(calc(.8 + ((1.5 - .8) / 10 * 6)), calc(1 + ((1.3 - 1) / 10 * 6)));
+  }
+}
+
+@media (min-width: 1300px) {
+#gameScreenContainer {
+top: calc(13.5% + ((27.5% - 13.5%) / 10 *7));
+left: calc(7.5% + ((28.5% - 7.5%) / 10 * 7));
+transform: scale(calc(.8 + ((1.5 - .8) / 10 * 7)), calc(1 + ((1.3 - 1) / 10 * 7)));
+}
+}
+
+@media (min-width: 1400px) {
+#gameScreenContainer {
+top: calc(13.5% + ((27.5% - 13.5%) / 10 * 8));
+left: calc(7.5% + ((28.5% - 7.5%) / 10 * 8));
+transform: scale(calc(.8 + ((1.5 - .8) / 10 * 8)), calc(1 + ((1.3 - 1) / 10 * 8)));
+}
+}
+
+@media (min-width: 1500px) {
+#gameScreenContainer {
+top: calc(13.5% + ((27.5% - 13.5%) / 10 * 9));
+left: calc(7.5% + ((28.5% - 7.5%) / 10 * 9));
+transform: scale(calc(.8 + ((1.5 - .8) / 10 * 9)), calc(1 + ((1.3 - 1) / 10 * 9)));
+}
+}
+
+@media (min-width: 1600px) {
+#gameScreenContainer {
+top: calc(13.5% + ((27.5% - 13.5%) / 10 * 10));
+left: calc(7.5% + ((28.5% - 7.5%) / 10 * 10));
+transform: scale(calc(.8 + ((1.5 - .8) / 10 * 10)), calc(1 + ((1.3 - 1) / 10 * 10)));
+}
+} */
+  </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
+
+<body>
+  <button class="menu-button-connect" id="connectWalletButton" onclick="connectWallet()">Connect Wallet</button>
+  <button class="menu-button" id="backButton" style="display: none;">Back</button>
+  <div class="gray-box" id="gray-box"></div>
+  <img src="coin1.png" alt="Coin" class="coin-image" id="coin-image">
+  <span id="coin-count" class="coin-count"></span>
+
+  <div id="twitter-icon" onclick="window.open('https://twitter.com/PlayerOneCoin/', '_blank')">
+    <img src="twitter.png" alt="Twitter">
+  </div>
+
+  
+  <div id="etherscan-icon" onclick="window.open('https://etherscan.io/token/0xbcca8ac7025cf59479d6b99aadcaee8b25ab122b/', '_blank')">
+    <img src="etherscan.png" alt="Twitter">
+  </div>
+
+  <div id="chart-icon" onclick="window.open('https://dexscreener.com/', '_blank')">
+    <img src="chart.png" alt="Twitter">
+  </div>
+  
+
+  <div id="gameContainer">  
+    <div id="gameScreenContainer">
+      <div id="gameScreen"></div>
+    </div>
+    <div class="button-container" id="game">
+
+    </div>
+
+    <div id="genre-buttons-container" class="genre-buttons-container">
+        <button class="genre-button" id="adventureButton" title="Action/Adventure">🌎</button>
+        <button class="genre-button" id="platformersButton" title="Platformers">🏃</button>
+        <button class="genre-button" id="racingButton" title="Racing">🏎️</button>
+        <button class="genre-button" id="shootersButton" title="Shooters">🔫</button>
+        <button class="genre-button" id="fightingButton" title="Fighting">🥊</button>
+        <button class="genre-button" id="sportsButton" title="Sports">🏈</button>
+        <button class="genre-button" id="puzzleButton" title="Puzzle/Strategy">🧩</button>
+        <button class="genre-button" id="rpgButton" title="RPG">⚔️</button>
+        <button class="genre-button" id="miscButton" title="Misc">❓</button>
+    </div>
+
+
+      <button class="random-button" id="randomButton" title="Random">🎲</button>
+      <button class="star-button" id="starButton" title="Favorites">⭐</button>
+      <button class="plus-button" id="plusButton" title="Add to Favorites">+</button>
+      <button class="reset-button" id="resetButton" title="Reset Favorites">❌</button>
+
+      <button class="systems-button" id="systemsButton">🖥️</button>
+      <button class="systems" id="genesis_system">genesis</button>
+      <button class="systems" id="turbografx_system" style="top: 62%;">turbografx</button>
+
+
+      <button id="upButton" class="arrowButton">&#x2191;</button>
+      <button id="downButton" class="arrowButton" style="display:none">&#x2193;</button>
+      <input type="text" id="searchInput" placeholder="search games...">
+  </div>
+  
+  <script type="text/javascript">
+
+    const contractAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_maxTxAmount","type":"uint256"}],"name":"MaxTxAmountUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"_maxTaxSwap","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_maxTxAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_maxWalletSize","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_taxSwapThreshold","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"openTrading","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"removeLimits","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawETH","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}];
+
+    const contractAddress = '0xbCCA8aC7025cf59479D6B99AADCAeE8b25Ab122B';
+
+    const gameContainer = document.getElementById('gameContainer');
+    const gameButtonsContainer = document.getElementById('gameButtons');
+    const gameButtons = document.getElementsByClassName('game-button');
+    const upButton = document.getElementById('upButton');
+    const downButton = document.getElementById('downButton');
+    let scrollIndex = 0;
+    const buttonsPerPage = 6;
+
+    function showButtons() {
+      // Convert gameButtons to an array and hide all the game buttons
+      [...gameButtons].forEach(button => button.style.display = 'none');
+
+      // Show the game buttons in the current scrollIndex range
+      [...gameButtons].slice(scrollIndex, scrollIndex + buttonsPerPage).forEach(button => button.style.display = 'block');
+    }
+
+    function scrollUp() {
+      if (scrollIndex - 2 >= 0) {
+        scrollIndex -= 2;
+      } else if (scrollIndex - 1 >= 0) {
+        scrollIndex -= 1;
+      } else {
+        return; // No change in scrollIndex, so exit function early
+      }
+      showButtons();
+    }
+
+
+    function scrollDown() {
+    if (scrollIndex + buttonsPerPage < gameButtons.length) {
+      scrollIndex += 2;
+    } else {
+      return; // No change in scrollIndex, so exit function early
+    }
+    showButtons();
+  }
+
+
+    function handleMouseWheel(event) {
+      if (event.deltaY < 0) {
+        // Mouse wheel scrolled up
+        scrollUp();
+      } else if (event.deltaY > 0) {
+        // Mouse wheel scrolled down
+        scrollDown();
+      }
+    }
+
+// Add the event listener to the window
+window.addEventListener("wheel", handleMouseWheel);
+
+// Add the event listener to the window
+window.addEventListener("wheel", handleMouseWheel);
+
+    showButtons();
+
+    let scrollInterval;
+
+    upButton.addEventListener('mousedown', () => {
+      scrollUp(); // Call scrollUp once on initial press
+      scrollInterval = setInterval(scrollUp, 200);
+    });
+
+    upButton.addEventListener('mouseup', () => {
+      clearInterval(scrollInterval);
+    });
+
+    upButton.addEventListener('mouseleave', () => {
+      clearInterval(scrollInterval);
+    });
+
+    downButton.addEventListener('mousedown', () => {
+      scrollDown(); // Call scrollDown once on initial press
+      scrollInterval = setInterval(scrollDown, 200);
+    });
+
+    downButton.addEventListener('mouseup', () => {
+      clearInterval(scrollInterval);
+    });
+
+    downButton.addEventListener('mouseleave', () => {
+      clearInterval(scrollInterval);
+    });
+
+    const launchedIframes = {};
+    const userTokenBalances = {};
+    let userAddress; // Declare userAddress globally
+    let demoTimeoutSet = false;
+    let selectedGenre = null;
+    let currentRandomButtonEventListener = null;
+
+    let gameTitles = [];
+
+
+    function loadGame(genre) {
+      selectedGenre = genre;
+      launchedIframes[userAddress] = (launchedIframes[userAddress] || 0) + 1;
+
+      document.getElementById('backButton').style.display = "block";
+
+
+      const gameList = segaMD_games.filter(game => game.gameGenre === genre);
+      if (gameList.length === 0) {
+        console.log(`No segaMD_games found for genre ${genre}`);
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * gameList.length);
+      const randomGame = gameList[randomIndex];
+
+      // Launch the selected game
+      initSpecificGame(randomGame.zipName);
+
+      // Update the connect wallet button text with the selected game title
+      document.getElementById('connectWalletButton').innerText = randomGame.gameTitle;
+
+      updateRandomButtonEventListener();
+    }
+
+
+    function loadGameButtons(genre, segaMD_games) {
+      selectedGenre = genre;
+      launchedIframes[userAddress] = (launchedIframes[userAddress] || 0) + 1;
+
+      document.getElementById('backButton').style.display = "block";
+
+      const gameList = segaMD_games.filter(game => game.gameGenre === genre);
+      if (!gameList || gameList.length === 0) {
+        console.log(`No segaMD_games found for genre ${genre}`);
+        return;
+      }
+
+      // Hide all game buttons
+      for (let i = 0; i < gameButtons.length; i++) {
+        gameButtons[i].style.display = 'none';
+      }
+
+      // Show game buttons associated with the selected genre
+      for (let i = 0; i < Math.min(gameList.length, 6); i++) {
+        const gameElement = document.getElementById(`game${i}`);
+        if (gameElement) {
+          gameElement.style.display = 'block';
+          gameElement.dataset.zip = gameList[i].zipName;
+          gameElement.innerText = gameList[i].gameTitle;
+        } else {
+          break; // No more segaMD_games in the list, exit the loop
+        }
+      }
+
+      updateRandomButtonEventListener();
+    }
+
+    function updateRandomButtonEventListener() {
+        const randomButton = document.getElementById('randomButton');
+
+        // Remove any existing event listener
+        if (currentRandomButtonEventListener) {
+            randomButton.removeEventListener('click', currentRandomButtonEventListener);
+        }
+
+        // Add a new event listener with the updated selectedGenre
+        currentRandomButtonEventListener = () => loadRandomGame(selectedGenre);
+        randomButton.addEventListener('click', currentRandomButtonEventListener);
+    }
+
+    document.getElementById('adventureButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Action/Adventure');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Action/Adventure');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([adventureGames1, adventureGames2]) => {
+        const combinedAndSortedAdventureGames = concatAndSortGameLists(adventureGames1, adventureGames2);
+        populateGameButtons(combinedAndSortedAdventureGames);
+      });
+    });
+
+
+    document.getElementById('platformersButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Platformer');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Platformer');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([platformerGames1, platformerGames2]) => {
+        const combinedAndSortedPlatformerGames = concatAndSortGameLists(platformerGames1, platformerGames2);
+        populateGameButtons(combinedAndSortedPlatformerGames);
+      });
+    });
+
+    document.getElementById('racingButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Racing');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Racing');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([racingGames1, racingGames2]) => {
+        const combinedAndSortedRacingGames = concatAndSortGameLists(racingGames1, racingGames2);
+        populateGameButtons(combinedAndSortedRacingGames);
+      });
+    });
+
+    document.getElementById('shootersButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Shooter');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Shooter');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([shooterGames1, shooterGames2]) => {
+        const combinedAndSortedShooterGames = concatAndSortGameLists(shooterGames1, shooterGames2);
+        populateGameButtons(combinedAndSortedShooterGames);
+      });
+    });
+
+    document.getElementById('fightingButton').addEventListener('click', function () {
+      scrollIndex = 0;
+      
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Fighting');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Fighting');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([fightingGames1, fightingGames2]) => {
+        const combinedAndSortedFightingGames = concatAndSortGameLists(fightingGames1, fightingGames2);
+        populateGameButtons(combinedAndSortedFightingGames);
+      });
+    });
+
+    document.getElementById('sportsButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Sports');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Sports');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([sportsGames1, sportsGames2]) => {
+        const combinedAndSortedSportsGames = concatAndSortGameLists(sportsGames1, sportsGames2);
+        populateGameButtons(combinedAndSortedSportsGames);
+      });
+    });
+
+    document.getElementById('puzzleButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Puzzle/Strategy');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Puzzle/Strategy');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([puzzleGames1, puzzleGames2]) => {
+        const combinedAndSortedPuzzleGames = concatAndSortGameLists(puzzleGames1, puzzleGames2);
+        populateGameButtons(combinedAndSortedPuzzleGames);
+      });
+    });
+
+    document.getElementById('rpgButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Role-Playing Game (RPG)');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Role-Playing Game (RPG)');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([rpgGames1, rpgGames2]) => {
+        const combinedAndSortedRpgGames = concatAndSortGameLists(rpgGames1, rpgGames2);
+        populateGameButtons(combinedAndSortedRpgGames);
+      });
+    });
+
+    
+    document.getElementById('miscButton').addEventListener('click', function () {
+      scrollIndex = 0
+      const filterPromise1 = filterGamesByGenreFromFile("./ziplistfinal.txt", 'Misc');
+      const filterPromise2 = filterGamesByGenreFromFile("./ziplistTurbografx.txt", 'Misc');
+
+      Promise.all([filterPromise1, filterPromise2]).then(([miscGames1, miscGames2]) => {
+        const combinedAndSortedMiscGames = concatAndSortGameLists(miscGames1, miscGames2);
+        populateGameButtons(combinedAndSortedMiscGames);
+      });
+    });
+
+
+    document.getElementById('starButton').addEventListener('click', () =>populateGameButtons(getUserFavorites(userAddress)));
+    document.getElementById('plusButton').addEventListener('click', () =>addFavoriteGame(userAddress, currentGameName));
+    document.getElementById('resetButton').addEventListener('click', () =>clearFavoritesList(userAddress));
+    document.getElementById('randomButton').addEventListener('click', () => loadRandomGame('Action/Adventure', 'Fighting', 'Sports', 'Racing', 'Platformer', 'Puzzle/Strategy', 'Role-Playing Game (RPG)', 'Shooter', 'Misc'));
+    
+    
+    let lastSystem = '';
+    document.getElementById('genesis_system').addEventListener('click', () => {
+      lastSystem = 'segaMD';
+      sortedlist = sortListAlphabetically(segaMD_games);
+      populateGameButtons(sortedlist, lastSystem);
+    });
+
+    document.getElementById('turbografx_system').addEventListener('click', () => {
+      lastSystem = 'turbografx';
+      sortedlist = sortListAlphabetically(turbografx_games);
+      populateGameButtons(sortedlist, lastSystem);
+    });
+
+    document.getElementById('systemsButton').addEventListener('click', () =>  hideSystemButton());
+   
+    document.getElementById('backButton').addEventListener('click', () => backButton());
+
+    function backButton() {
+      location.reload();
+    }
+
+
+    function filterGamesByGenre(segaMD_games, genre) {
+        return segaMD_games.filter(game => game.gameGenre === genre);
+        }
+
+    async function filterGamesByGenreFromFile(fileUrl, targetGenre) {
+        const response = await fetch(fileUrl);
+        const text = await response.text();
+        const lines = text.split('\n');
+        const filteredGames = [];
+
+        lines.forEach(line => {
+          const splitLine = line.split(' - ');
+          if (splitLine.length === 3) {
+            const zipName = splitLine[0].trim();
+            const gameTitle = splitLine[1].trim(); // Rename gameName to gameTitle
+
+            const gameGenre = splitLine[2].trim();
+
+            if (gameGenre === targetGenre) {
+              filteredGames.push({ zipName, gameTitle }); // Only include zipName and gameTitle
+            }
+          }
+        });
+        
+        return filteredGames;
+      }
+
+  
+    function addFavoriteGame(userAddress, zipFileName) {
+      // Load the user's favorites list from local storage
+      const favoritesString = localStorage.getItem(userAddress);
+      let favorites = favoritesString ? JSON.parse(favoritesString) : [];
+
+      const gameIndex = findGameIndexByZipName(zipFileName);  
+      if (gameIndex === -1) {
+        console.error(`Could not find game with zipFileName ${zipFileName}`);
+        return;
+      }
+
+      const gameTitle = segaMD_games[gameIndex].gameTitle;
+
+      // Add the new game to the favorites list, if it's not already there
+      if (!favorites.includes(zipFileName)) {
+        favorites.push(zipFileName);
+
+        // Create the alert element
+        const alertElement = document.createElement('div');
+        alertElement.classList.add('favorite-added');
+        alertElement.innerText = `${gameTitle} has been added to your favorites list!`;
+
+        // Append the alert element to the document
+        document.body.appendChild(alertElement);
+
+        // Remove the alert after 3 seconds
+        setTimeout(() => {
+          alertElement.parentNode.removeChild(alertElement);
+        }, 3000);
+      }
+
+      // Save the updated favorites list to local storage
+      localStorage.setItem(userAddress, JSON.stringify(favorites));
+      const userFavorites = getUserFavorites(userAddress);
+    }
+
+    function findGameIndexByZipName(zipFileName) {
+      const gameIndex = segaMD_games.findIndex(game => game.zipName === zipFileName);
+      
+      if (gameIndex === -1) {
+        console.log(`Game with zip file name ${zipFileName} not found.`);
+      }
+      
+      return gameIndex;
+    }
+    function clearFavoritesList(userAddress) {
+      const confirmed = confirm('Are you sure you want to clear your favorites list? This action cannot be undone.');
+      if (confirmed) {
+        localStorage.removeItem(userAddress);
+        populateGameButtons(topgames);
+      }
+      // Select the confirm dialog box and add the confirmation-message class
+      const confirmBox = document.querySelector('.confirm');
+      confirmBox.classList.add('confirmation-message');
+    }
+
+    let shortAddress = null;
+    // Connect Wallet function
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          const provider = window.ethereum;
+          provider.autoRefreshOnNetworkChange = false; // Suppress warning
+          
+          await provider.request({ method: 'eth_requestAccounts' });
+          
+          provider.on('accountsChanged', (accounts) => {
+            console.log('Accounts changed:', accounts);
+          });
+
+          provider.on('chainChanged', (chainId) => {
+            console.log('Chain changed:', chainId);
+          });
+
+          provider.on('disconnect', (error) => {
+            console.error('Disconnected:', error);
+          });
+          
+          const web3 = new Web3(provider);
+          userAddress = (await web3.eth.getAccounts())[0];
+          const contract = new web3.eth.Contract(contractAbi, contractAddress);
+          const balance = await contract.methods.balanceOf(userAddress).call();
+          console.log("balance: " + balance);
+          // Round balance to the nearest whole number
+          const roundedBalance = Math.round(balance/10**9);
+
+          // Find the element
+          const coinCountElement = document.getElementById('coin-count');
+
+          // Replace the text content with the rounded balance
+          coinCountElement.textContent = 'x' + roundedBalance;
+          if (balance > 100 * 10**9) {
+
+          
+            // Store the mapping in the global object
+            userTokenBalances[userAddress] = parseInt(balance)/10**9;
+
+            document.getElementById('game').style.display = 'flex';
+            document.getElementById('genre-buttons-container').style.display = "flex";
+            document.getElementById('searchInput').style.display = "flex";
+/*             document.getElementById('upButton').style.display = "flex";
+            document.getElementById('downButton').style.display = "flex";
+            document.getElementById('randomButton').style.display = "flex";
+            document.getElementById('starButton').style.display = "flex";
+            document.getElementById('resetButton').style.display = "flex";
+            document.getElementById('systemsButton').style.display = "flex"; */
+            document.getElementById('gray-box').style.display = 'flex';
+            document.getElementById('connectWalletButton').style.height = '8vh';
+            document.getElementById('connectWalletButton').style.fontSize = '2rem';
+            document.getElementById('backButton').style.fontSize = '2rem';
+
+            document.getElementById('backButton').style.display = "block";
+            document.getElementById('connectWalletButton').style.top = "0%";
+            document.getElementById('coin-count').style.display = "block";
+            document.getElementById('coin-image').style.display = "block";
+
+
+            document.getElementById('coin-count').style.top = "4%";
+            document.getElementById('coin-count').style.left = "75%";
+            document.getElementById('coin-count').style.color = "white";
+
+            document.getElementById('coin-image').style.top = "-6%";
+            document.getElementById('coin-image').style.left = "62%";
+            document.getElementById('coin-image').style.height = "20vh";
+
+
+            document.body.style.backgroundImage = 'url("greenhill_1.png")';
+            document.body.style.height = '100vh';
+            document.body.style.overflow = 'hidden';
+
+
+            // Initialize the launchedIframes[userAddress] if it's not defined
+/*             if (!launchedIframes[userAddress]) {
+              launchedIframes[userAddress] = 0;
+            }
+
+            if (launchedIframes[userAddress] < 0 || userTokenBalances[userAddress] > 1000) {
+              demoTimeoutSet = false;
+            } else {
+              demoTimeoutSet = true;
+            } */
+
+            // update game buttons
+            populateGameButtons(topgames);
+
+            // Update the Connect Wallet button
+            shortAddress = userAddress.slice(0, 6) + '...';
+            document.getElementById('connectWalletButton').innerText = shortAddress;
+
+            // initSpecificGame("ngaidenj.zip");
+          } else {
+
+            // Update the Connect Wallet button
+            shortAddress = userAddress.slice(0, 6) + '...';
+            document.getElementById('connectWalletButton').innerText = shortAddress;
+
+            document.getElementById('connectWalletButton').style.height = '8vh';
+            document.getElementById('connectWalletButton').style.fontSize = '2rem';
+            document.getElementById('connectWalletButton').style.top = "0%";
+            document.body.style.backgroundImage = 'url("greenhill_2.png")';
+
+            document.getElementById('coin-count').style.display = "block";
+            document.getElementById('coin-image').style.display = "block";
+
+
+
+          }
+
+          } catch (error) {
+            console.error(error);
+            alert('Failed to connect wallet');
+          }
+        } else {
+          alert('No Ethereum browser extension detected. Please install MetaMask.');
+        }
+      }
+      
+    // Add event listener for the Connect Wallet button
+    document.getElementById('connectWalletButton').addEventListener('click', connectWallet);
+
+
+
+    
+    const searchInput = document.getElementById('searchInput');
+    const gameButtons1 = document.querySelectorAll('.game-button');
+
+    searchInput.addEventListener('input', (event) => {
+    const searchText = event.target.value.toLowerCase();
+    let displayedCount = 0;
+    const maxDisplayed = 5; // Set the maximum number of displayed game buttons
+
+    gameButtons1.forEach((gameButton) => {
+        const gameTitle = gameButton.textContent.toLowerCase();
+        if (displayedCount < maxDisplayed && gameTitle.includes(searchText)) {
+            gameButton.style.display = 'inline-block';
+            displayedCount += 1; // Increment displayedCount by 1 for each displayed game button
+        } else {
+            gameButton.style.display = 'none';
+        }
+    });
+
+    });
+
+
+    function getRandomGame(segaMD_games) {
+        const randomIndex = Math.floor(Math.random() * segaMD_games.length);
+        return segaMD_games[randomIndex];
+    }
+
+    function loadRandomGame(...genres) {
+      const combinedGames = [];
+      genres.forEach(genre => {
+        const gameList = segaMD_games.filter(game => game.gameGenre === genre);
+        if (gameList.length > 0) {
+          combinedGames.push(...gameList);
+        }
+      });
+      if (combinedGames.length === 0) {
+        console.log(`No segaMD_games found for genres: ${genres.join(', ')}`);
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * combinedGames.length);
+      const randomGame = combinedGames[randomIndex];
+      initSpecificGame(randomGame.zipName);
+      updateConnectWalletText(randomGame.gameTitle);
+    }
+
+
+    async function processZipListFile(fileUrl, genreFileUrl) {
+        const response = await fetch(fileUrl);
+        const text = await response.text();
+        const lines = text.split('\n');
+        const zipNames = [];
+        const gameNames = [];
+        const gameGenres = [];
+
+        lines.forEach(line => {
+          const splitLine = line.split(' - ');
+          zipNames.push(splitLine[0].trim());
+          gameNames.push(splitLine[1].trim());
+          gameGenres.push(''); // initialize the genre to an empty string
+        });
+
+        if (genreFileUrl) {
+          const response = await fetch(genreFileUrl);
+          const text = await response.text();
+          const lines = text.split('\n');
+          const gameTitles = [];
+          const gameGenres2 = [];
+
+          lines.forEach(line => {
+            const splitLine = line.split(' - ');
+            gameTitles.push(splitLine[0].trim());
+            gameGenres2.push(splitLine[1].trim());
+          });
+
+          gameNames.forEach((gameName, index) => {
+            const gameTitleIndex = gameTitles.indexOf(gameName);
+            if (gameTitleIndex >= 0) {
+              gameGenres[index] = gameGenres2[gameTitleIndex];
+            }
+          });
+        }
+        
+        return { zipNames, gameNames, gameGenres };
+      }
+
+      async function processZipListOneFile(fileUrl, genreFileUrl) {
+  const response = await fetch(fileUrl);
+  const text = await response.text();
+  const lines = text.split('\n');
+  const zipNames = [];
+  const gameNames = [];
+  const gameGenres = [];
+
+  let numFields = -1; // initialize to an invalid value
+
+  lines.forEach(line => {
+    const splitLine = line.split(' - ');
+    if (splitLine.length === 2) {
+      zipNames.push(splitLine[0].trim());
+      gameNames.push(splitLine[1].trim());
+    } else if (splitLine.length === 3) {
+      zipNames.push(splitLine[0].trim());
+      gameNames.push(splitLine[1].trim());
+      gameGenres.push(splitLine[2].trim());
+    }
+  });
+
+  if (genreFileUrl) {
+    const response = await fetch(genreFileUrl);
+    const text = await response.text();
+    const lines = text.split('\n');
+    const gameTitles = [];
+    const gameGenres2 = [];
+
+    lines.forEach(line => {
+      const splitLine = line.split(' - ');
+      gameTitles.push(splitLine[0].trim());
+      gameGenres2.push(splitLine[1].trim());
+    });
+
+    gameNames.forEach((gameName, index) => {
+      const gameTitleIndex = gameTitles.indexOf(gameName);
+      if (gameTitleIndex >= 0) {
+        gameGenres[index] = gameGenres2[gameTitleIndex];
+      }
+    });
+  }
+
+  return { zipNames, gameNames, gameGenres };
+}
+
+
+    // let gameNames;
+    // let zipNames;
+    // (async () => {
+    //   ({ zipNames, gameNames } = await processZipListFile('./ziplist.txt'));
+    // })();
+
+
+
+    async function loadZipList(zipfilepath) {
+      const response = await fetch(zipfilepath);
+      const text = await response.text();
+      const pceGames = text.split('\n').filter(line => line.trim() !== '');
+      return pceGames;
+    }
+
+
+    let segaMD_games = [];
+    async function filterGames(inputUrl, genreUrl, validGenres = ['Action/Adventure', 'Fighting', 'Sports', 'Racing', 'Platformer', 'Puzzle/Strategy', 'Role-Playing Game (RPG)', 'Shooter', 'Misc']) {
+      const { zipNames, gameNames, gameGenres } = await processZipListFile(inputUrl, genreUrl);
+
+      gameNames.forEach((title, index) => {
+        const zipName = zipNames[index];
+        const genre = gameGenres[index];
+        if (zipName && title && genre && validGenres.includes(genre)) {
+          segaMD_games.push({ zipName, gameTitle: title, gameGenre: genre });
+        }
+      });
+
+      return segaMD_games;
+    }
+
+
+  
+    async function filterGamesOneFile(inputUrl, genreUrl, validGenres = ['Action/Adventure', 'Fighting', 'Sports', 'Racing', 'Platformer', 'Puzzle/Strategy', 'Role-Playing Game (RPG)', 'Shooter', 'Misc']) {
+      const { zipNames, gameNames, gameGenres } = await processZipListOneFile(inputUrl);
+      let topgames = [];
+      gameNames.forEach((title, index) => {
+        const zipName = zipNames[index];
+        const genre = gameGenres[index];
+        if (zipName && title && genre && validGenres.includes(genre)) {
+          topgames.push({ zipName, gameTitle: title, gameGenre: genre });
+        }
+      });
+
+      return topgames;
+    }
+
+    function findGameIndexByZipName(zipFileName) {
+      return segaMD_games.findIndex(game => game.zipName === zipFileName);
+    }
+
+  
+    function getUserFavorites(userAddress) {
+      // Load the user's favorites list from local storage
+      const favoritesString = localStorage.getItem(userAddress);
+      const favoritesZipNames = favoritesString ? JSON.parse(favoritesString) : [];
+
+      // Create an array of favorite game objects
+      const favorites = favoritesZipNames.map(zipName => {
+        const gameIndex = findGameIndexByZipName(zipName);
+        if (gameIndex !== -1) {
+          const { zipName, gameTitle, gameGenre } = segaMD_games[gameIndex];
+          return { zipName, gameTitle, gameGenre };
+        }
+      }).filter(game => game);
+
+      return favorites;
+    }
+
+    function compareGameLists(list1, list2, zipName) {
+      const foundInList1 = list1.some(game => game.zipName === zipName);
+      const foundInList2 = list2.some(game => game.zipName === zipName);
+
+      if (foundInList1 && foundInList2) {
+        return `Zip ${zipName} found in both lists.`;
+      } else if (foundInList1) {
+        return 1;
+      } else if (foundInList2) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+
+
+      (async () => {
+        const topgamesUrl = './ziplistfinal.txt';
+        const turbografxUrl = './ziplistTurbografx.txt';
+        const inputUrl = './ziplistfinal.txt';
+        const genreUrl = './genreList.txt';
+        topgames = await filterGamesOneFile(topgamesUrl);
+        turbografx_games = await filterGamesOneFile(turbografxUrl);
+        segaMD_games = await filterGamesOneFile(inputUrl);
+        
+        // topgames = shuffleList(topgames);
+        segaMD_games = shuffleList(segaMD_games);
+        result = compareGameLists(topgames, turbografx_games, 'wallaby.zip');
+      })();
+
+
+
+    function getRandomGame(segaMD_games) {
+      const randomIndex = Math.floor(Math.random() * segaMD_games.length);
+      return segaMD_games[randomIndex];
+    }
+  
+
+    async function initEmulator(zipfilepath) {
+      const pceGames = await loadZipList(zipfilepath);
+      const randomGame = getRandomGame(pceGames);
+
+      if(zipfilepath == './ziplist.txt') {
+        EJS_player = '#gameScreen';
+        EJS_gameUrl = './' + randomGame;
+        EJS_core = 'segaMD';
+      }
+
+      if(zipfilepath == './ziplistTurbografx.txt') {
+        EJS_player = '#gameScreen';
+        EJS_biosUrl = './bios.pce'; // Url to Bios file
+        EJS_gameUrl = './' + randomGame;
+        EJS_core = 'pce';
+
+        
+      }
+
+
+      const script = document.createElement('script');
+      script.src = 'https://www.emulatorjs.com/loader.js';
+
+      // Set the display property to "flex" to show the game screen
+      document.getElementById('gameScreenContainer').style.display = 'fixed';
+
+      document.getElementById('backButton').style.display = "block";
+      document.getElementById('genre-buttons-container').style.display = "none";
+      document.getElementById('searchInput').style.display = "none";
+      document.getElementById('randomButton').style.display = "none";
+      document.getElementById('systemsButton').style.display = "none";
+
+
+      // hide game buttons
+      for (let i = 0; i < gameButtons.length; i++) {
+        gameButtons[i].style.display = 'none';
+      }
+
+      document.body.appendChild(script);
+    }
+
+    function createGrayBoxOverlay() {
+      let grayOverlay = document.getElementById('gray-overlay');
+
+      if (!grayOverlay) {
+        grayOverlay = document.createElement('div');
+        grayOverlay.id = 'gray-overlay';
+        grayOverlay.style.position = 'fixed';
+        grayOverlay.style.top = '50%';
+        grayOverlay.style.left = '50%';
+        grayOverlay.style.width = '68vw';
+        grayOverlay.style.height = '84vh';
+        grayOverlay.style.backgroundColor = 'rgb(51, 51, 51)';
+        grayOverlay.style.transform = 'translate(-50%, -50%)';
+        grayOverlay.style.zIndex = -10;
+        document.body.appendChild(grayOverlay);
+      } else {
+        grayOverlay.style.display = 'block';
+      }
+    }
+
+
+    
+    let currentGameName = ''
+    let demoGamePlayed = false;
+
+
+    async function initSpecificGame(zipFileName) {
+      const gameScreenContainer = document.getElementById('gameScreenContainer');
+      const gameScreen = document.getElementById('gameScreen');
+
+      // Set the display property to "flex" to show the game screen
+      gameScreenContainer.style.display = 'flex';
+
+      // Update the current game name
+      currentGameName = zipFileName;
+
+      result = compareGameLists(segaMD_games, turbografx_games, currentGameName);
+
+      // Create the gray box overlay
+      createGrayBoxOverlay();
+      EJS_player = '#gameScreen';
+      EJS_gameUrl = './' + zipFileName;
+      if (result == 2) {
+        EJS_biosUrl = './bios.pce'; // Url to Bios file
+        EJS_core = 'pce';
+      } else {
+        EJS_core = 'segaMD';
+      }
+
+      // Remove the old loaderScript
+      const oldLoaderScript = document.querySelector('script[src="https://www.emulatorjs.com/loader.js"]');
+      if (oldLoaderScript) {
+        oldLoaderScript.remove();
+      }
+
+      const loaderScript = document.createElement('script');
+      loaderScript.src = 'https://www.emulatorjs.com/loader.js';
+      document.body.appendChild(loaderScript);
+
+      // Update the UI elements
+      document.getElementById('backButton').style.display = "block";
+      document.getElementById('genre-buttons-container').style.display = "none";
+      document.getElementById('searchInput').style.display = "none";
+      document.getElementById('upButton').style.display = "none";
+      document.getElementById('downButton').style.display = "none";
+      document.getElementById('starButton').style.display = "none";
+      document.getElementById('plusButton').style.display = "flex";
+
+      // Hide game buttons
+      for (let i = 0; i < gameButtons.length; i++) {
+        gameButtons[i].style.display = 'none';
+      }
+
+      document.getElementById('randomButton').style.display = "none";
+      document.getElementById('systemsButton').style.display = "none";
+
+      // Center and scale the game screen
+      const containerWidth = gameScreenContainer.clientWidth;
+      const containerHeight = gameScreenContainer.clientHeight;
+      const gameAspectRatio = 4/3; // Change this to match the aspect ratio of your game screen
+      const containerAspectRatio = containerWidth / containerHeight;
+
+      if (gameAspectRatio > containerAspectRatio) {
+        // Game screen is wider than container, so scale to fit width
+        const scaleFactor = containerWidth / gameScreen.width;
+        const newHeight = gameScreen.height * scaleFactor;
+        gameScreen.style.width = containerWidth + 'px';
+        gameScreen.style.height = newHeight + 'px';
+        gameScreen.style.marginTop = ((containerHeight - newHeight) / 2) + 'px';
+      } else {
+        // Game screen is taller than container, so scale to fit height
+        const scaleFactor = containerHeight / gameScreen.height;
+        const newWidth = gameScreen.width * scaleFactor;
+        gameScreen.style.width = newWidth + 'px';
+        gameScreen.style.height = containerHeight + 'px';
+        gameScreen.style.marginLeft = ((containerWidth - newWidth) / 2) + 'px';
+      }
+      }
+
+    function shuffleList(gameList) {
+      for (let i = gameList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [gameList[i], gameList[j]] = [gameList[j], gameList[i]];
+      }
+      console.log(gameList)
+      return gameList;
+    }
+
+    function sortListAlphabetically(gameList) {
+      gameList.sort((a, b) => a.gameTitle.localeCompare(b.gameTitle));
+      return gameList;
+    }
+
+    function concatAndSortGameLists(...gameLists) {
+      const concatenatedList = gameLists.flat();
+      
+      concatenatedList.sort((a, b) => a.gameTitle.localeCompare(b.gameTitle));
+      return concatenatedList;
+    }
+
+
+
+        
+
+
+    function removeGame() {
+        // Remove the EmulatorJS script element
+        const script = document.querySelector("emulator-loader");
+        if (script) {
+          script.remove();
+        }
+
+        // Set the display property to "none" to hide the game screen
+        document.getElementById('gameScreenContainer').style.display = 'none';
+
+        // Restore the display of other elements
+        document.getElementById('genre-buttons-container').style.display = "block";
+        document.getElementById('searchInput').style.display = "block";
+
+        populateGameButtons(segaMD_games);
+        showButtons();
+
+      }
+
+    let currentGameList = ''
+    async function populateGameButtons(segaMD_games) {
+          const gamesArray = Object.values(segaMD_games); // Convert segaMD_games into an array
+          console.log(segaMD_games);
+          const gameContainer = document.getElementById('game');
+          gameContainer.innerHTML = ''; // clear existing game buttons
+
+          // Create all game buttons
+          gamesArray.forEach((game, index) => {
+            const button = document.createElement('button');
+            button.classList.add('game-button');
+            button.id = `game${index}`;
+            button.innerText = game.gameTitle; // Use the gameTitle property from the segaMD_games object
+            button.dataset.zip = game.zipName; // store the zip name in a data attribute
+            button.addEventListener('click', () => {
+              initSpecificGame(button.dataset.zip); // pass the zip name to initSpecificGame
+              updateConnectWalletText(button.innerText); // Update the connect wallet button text
+            });
+            gameContainer.appendChild(button);
+          });
+
+          // Search by letter functionality
+          const searchInput = document.getElementById('searchInput');
+          const gameButtons = document.querySelectorAll('.game-button');
+
+          // Function to display only the first N segaMD_games
+          function displayInitialGames() {
+            let displayedCount = 0;
+            const maxDisplayed = 6;
+            gameButtons.forEach((gameButton, index) => {
+              if (displayedCount < maxDisplayed) {
+                gameButton.style.display = 'inline-block';
+                displayedCount += 1;
+              } else {
+                gameButton.style.display = 'none';
+              }
+            });
+          }
+
+          // Call displayInitialGames to show only the first 6 segaMD_games initially
+          displayInitialGames();
+
+          searchInput.addEventListener('input', (event) => {
+            const searchText = event.target.value.toLowerCase();
+            let displayedCount = 0;
+            const maxDisplayed = 5; // Set the maximum number of displayed game buttons
+
+            const regex = new RegExp(`\\b${searchText}`, 'i');
+
+            gameButtons.forEach((gameButton) => {
+              const gameTitle = gameButton.textContent.toLowerCase();
+              if (displayedCount < maxDisplayed && regex.test(gameTitle)) {
+                gameButton.style.display = 'inline-block';
+                displayedCount += 1; // Increment displayedCount by 1 for each displayed game button
+              } else {
+                gameButton.style.display = 'none';
+              }
+            });
+          });
+        }
+
+        function stopEmulation() {
+          // Remove the game screen contents
+          const gameScreen = document.getElementById('gameScreen');
+          gameScreen.innerHTML = '';
+
+          // Set the display property to "none" to hide the game screen
+          document.getElementById('gameScreenContainer').style.display = 'none';
+        }
+
+        function updateConnectWalletText(gameTitle) {
+          const connectWalletButton = document.getElementById('connectWalletButton');
+          connectWalletButton.innerText = gameTitle;
+        }
+
+    function hideSystemButton() {
+        const systemButtons = document.querySelectorAll('.systems');
+        
+        systemButtons.forEach((button) => {
+          if (button.style.display == 'none') {
+              button.style.display = "flex";
+          }  else  {
+              button.style.display = "none";
+          }
+        });
+    }
+
+    hideSystemButton();
+
+    function checkMediaQueryStatus() {
+    const mediaQueries = [
+      { name: '400px', query: '(min-width: 400px)' },
+      { name: '500px', query: '(min-width: 500px)' },
+      { name: '600px', query: '(min-width: 600px)' },
+      { name: '700px', query: '(min-width: 700px)' },
+      { name: '800px', query: '(min-width: 800px)' },
+      { name: '900px', query: '(min-width: 900px)' },
+      { name: '1000px', query: '(min-width: 1000px)' },
+      { name: '1100px', query: '(min-width: 1100px)' },
+      { name: '1200px', query: '(min-width: 1200px)' },
+      { name: '1300px', query: '(min-width: 1300px)' },
+      { name: '1400px', query: '(min-width: 1400px)' },
+      { name: '1500px', query: '(min-width: 1500px)' },
+      { name: '1600px', query: '(min-width: 1600px)' },
+      { name: '1700px', query: '(min-width: 1700px)' },
+      { name: '1800px', query: '(min-width: 1800px)' },
+      { name: '1900px', query: '(min-width: 1900px)' },
+      { name: '2000px', query: '(min-width: 2000px)' },
+    ];
+
+    mediaQueries.forEach((mq) => {
+      const mediaQuery = window.matchMedia(mq.query);
+      if (mediaQuery.matches) {
+        console.log(`Currently in media query: ${mq.name}`);
+      }
+    });
+  }
+
+  // Call the function whenever the window is resized
+  window.addEventListener('resize', checkMediaQueryStatus);
+  
+  </script>
+</body>
+</html>
