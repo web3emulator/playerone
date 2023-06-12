@@ -115,7 +115,6 @@
 
 
 
-
     .genre-buttons-container {
         
       display: none;
@@ -495,6 +494,23 @@
       width: 100px; /* adjust size as needed */
       height: 100px; /* adjust size as needed */
     }
+
+    #gameboylink-icon {
+      position: absolute;
+      top: 77%;
+      left: 87%;
+      transform: translate(-50%, -50%);
+      transform: scale(1.4, 1.4);
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #gameboylink-icon img {
+      width: 100px; /* adjust size as needed */
+      height: 100px; /* adjust size as needed */
+      border: 3px solid black;
+
+    }
    
    
   /* @media (min-width: 600px) {
@@ -609,6 +625,11 @@ transform: scale(calc(.8 + ((1.5 - .8) / 10 * 10)), calc(1 + ((1.3 - 1) / 10 * 1
   <div id="discord-icon" onclick="window.open('https://discord.gg/wgtUe7d7', '_blank')">
     <img src="discord.png" alt="Discord">
   </div>
+
+  <div id="gameboylink-icon" onclick="window.open('https://gameboyapp.com/', '_blank')">
+    <img src="gameboylink.png" alt="Gameboy">
+  </div>
+
 
   <div id="gameContainer">  
     <div id="gameScreenContainer">
